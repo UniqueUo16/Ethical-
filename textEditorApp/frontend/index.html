@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextPro Suite - Professional Text Processing Tools</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i data-feather="edit-3" class="me-2"></i>
+                TextPro Suite
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <span class="navbar-text">Professional Text Processing Tools</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h1 class="display-4 mb-3">TextPro Suite</h1>
+                <p class="lead">Comprehensive text processing tools for writers, students, and businesses</p>
+                <hr class="my-4">
+            </div>
+        </div>
+
+        <!-- Tool Navigation -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <nav class="nav nav-pills nav-fill">
+                    <a class="nav-link active" href="#case-converter" data-tool="case-converter">
+                        <i data-feather="type" class="me-1"></i>Case Converter
+                    </a>
+                    <a class="nav-link" href="#text-counter" data-tool="text-counter">
+                        <i data-feather="hash" class="me-1"></i>Text Counter
+                    </a>
+                    <a class="nav-link" href="#find-replace" data-tool="find-replace">
+                        <i data-feather="search" class="me-1"></i>Find & Replace
+                    </a>
+                    <a class="nav-link" href="#text-cleaner" data-tool="text-cleaner">
+                        <i data-feather="filter" class="me-1"></i>Text Cleaner
+                    </a>
+                    <a class="nav-link" href="#text-formatter" data-tool="text-formatter">
+                        <i data-feather="list" class="me-1"></i>Formatter
+                    </a>
+                    <a class="nav-link" href="#seo-analyzer" data-tool="seo-analyzer">
+                        <i data-feather="trending-up" class="me-1"></i>SEO Analyzer
+                    </a>
+                    <a class="nav-link" href="#text-compare" data-tool="text-compare">
+                        <i data-feather="git-compare" class="me-1"></i>Compare
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Case Converter Tool -->
+        <div class="tool-section" id="case-converter">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">
+                        <i data-feather="type" class="me-2"></i>Case Converter
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="case-input" class="form-label">Input Text</label>
+                            <textarea class="form-control" id="case-input" rows="10" placeholder="Enter your text here..."></textarea>
+                            <small class="form-text text-muted">Characters: <span id="case-char-count">0</span></small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="case-output" class="form-label">Converted Text</label>
+                            <textarea class="form-control" id="case-output" rows="10" readonly></textarea>
+                            <div class="mt-2">
+                                <button type="button" class="btn btn-sm btn-outline-light" onclick="copyToClipboard('case-output')">
+                                    <i data-feather="copy" class="me-1"></i>Copy
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-light" onclick="exportText('case-output', 'converted_text.txt')">
+                                    <i data-feather="download" class="me-1"></i>Export
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-secondary" onclick="convertCase('uppercase')">UPPERCASE</button>
+                                <button type="button" class="btn btn-secondary" onclick="convertCase('lowercase')">lowercase</button>
+                                <button type="button" class="btn btn-secondary" onclick="convertCase('title')">Title Case</button>
+                                <button type="button" class="btn btn-secondary" onclick="convertCase('sentence')">Sentence case</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text Counter Tool -->
+        <div class="tool-section d-none" id="text-counter">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">
+                        <i data-feather="hash" class="me-2"></i>Text Counter & Analysis
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="counter-input" class="form-label">Input Text</label>
+                            <textarea class="form-control" id="counter-input" rows="15" placeholder="Enter your text here..."></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Statistics</h5>
+                            <div class="card bg-dark">
+                                <div class="card-body">
+                                    <div class="stat-item">
+                                        <strong>Characters:</strong> <span id="stat-characters">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <strong>Characters (no spaces):</strong> <span id="stat-characters-no-spaces">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <strong>Words:</strong> <span id="stat-words">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <strong>Sentences:</strong> <span id="stat-sentences">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <strong>Paragraphs:</strong> <span id="stat-paragraphs">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <strong>Reading time:</strong> <span id="stat-reading-time">0</span> min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Find & Replace Tool -->
+        <div class="tool-section d-none" id="find-replace">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">
+                        <i data-feather="search" class="me-2"></i>Find & Replace
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="find-text" class="form-label">Find</label>
+                            <input type="text" class="form-control" id="find-text" placeholder="Text to find">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="replace-text" class="form-label">Replace with</label>
+                            <input type="text" class="form-control" id="replace-text" placeholder="Replacement text">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Options</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="case-sensitive">
+                                <label class="form-check-label" for="case-sensitive">Case sensitive</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="use-regex">
+                                <label class="form-check-label" for="use-regex">Use regex</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-primary" onclick="findReplace()">
+                                <i data-feather="repeat" class="me-1"></i>Replace All
+                            </button>
+                            <span id="replace-status" class="ms-3 text-muted"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="fr-input" class="form-label">Original Text</label>
+                            <textarea class="form-control" id="fr-input" rows="12" placeholder="Enter your text here..."></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fr-output" class="form-label">Result</label>
+                            <textarea class="form-control" id="fr-output" rows="12" readonly></textarea>
+                            <div class="mt-2">
+                                <button type="button" class="btn btn-sm btn-outline-light" onclick="copyToClipboard('fr-output')">
+                                    <i data-feather="copy" class="me-1"></i>Copy
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-light" onclick="exportText('fr-output', 'replaced_text.txt')">
+                                    <i data-feather="download" class="me-1"></i>Export
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text Cleaner Tool -->
+        <div class="tool-section d-none" id="text-cleaner">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">
+                        <i data-feather="filter" class="me-2"></i>Text Cleaner
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="clean-input" class="form-label">Input Text</label>
+                            <textarea class="form-control" id="clean-input" rows="12" placeholder="Enter your text here..."></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="clean-output" class="form-label">Cleaned Text</label>
+                            <textarea class="form-control" id="clean-output" rows="12" readonly></textarea>
+                            <div class="mt-2">
+                                <button type="button" class="btn btn-sm btn-outline-light" onclick="copyToClipboard('clean-output')">
+                                    <i data-feather="copy" class="me-1"></i>Copy
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-light" onclick="exportText('clean-output', 'cleaned_text.txt')">
+                                    <i data-feather="download" class="me-1"></i>Export
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-secondary" onclick="cleanText('extra_spaces')">Remove Extra Spaces</button>
+                                <button type="button" class="btn btn-secondary" onclick="cleanText('line_breaks')">Remove Line Breaks</button>
+                                <button type="button" class="btn btn-secondary" onclick="cleanText('special_chars')">Remove Special Characters</button>
+                                <button type="button" class="btn btn-secondary" onclick="cleanText('all')">Clean All</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text Formatter Tool -->
+        <div class="tool-section d-none" id="text-formatter">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">
+                        <i data-feather="list" class="me-2"></i>Text Formatter
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="format-input" class="form-label">Input Text</label>
+                            <textarea class="form-control" id="format-input" rows="12" placeholder="Enter your text here (one item per line)..."></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="format-output" class="form-label">Formatted Text</label>
+                            <textarea class="form-control" id="format-output" rows="12" readonly></textarea>
+                            <div class="mt-2">
+                                <button type="button" class="btn btn-sm btn-outline-light" onclick="copyToClipboard('format-output')">
+                                    <i data-feather="copy" class="me-1"></i>Copy
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-light" onclick="exportText('format-output', 'formatted_text.txt')">
+                                    <i data-feather="download" class="me-1"></i>Export
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-secondary" onclick="formatText('bullets')">
+                                    <i data-feather="circle" class="me-1"></i>Bullet Points
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="formatText('numbers')">
+                                    <i data-feather="list" class="me-1"></i>Numbered List
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="formatText('remove_formatting')">
+                                    <i data-feather="x" class="me-1"></i>Remove Formatting
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Analyzer Tool -->
+        <div class="tool-section d-none" id="seo-analyzer">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">
+                        <i data-feather="trending-up" class="me-2"></i>SEO Analyzer
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="seo-keyword" class="form-label">Target Keyword (optional)</label>
+                            <input type="text" class="form-control" id="seo-keyword" placeholder="Enter target keyword">
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-primary mt-4" onclick="analyzeSEO()">
+                                <i data-feather="activity" class="me-1"></i>Analyze
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="seo-input" class="form-label">Text to Analyze</label>
+                            <textarea class="form-control" id="seo-input" rows="15" placeholder="Enter your text here..."></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>SEO Analysis</h5>
+                            <div class="card bg-dark">
+                                <div class="card-body">
+                                    <div id="seo-results">
+                                        <p class="text-muted">Enter text and click analyze to see results</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text Compare Tool -->
+        <div class="tool-section d-none" id="text-compare">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">
+                        <i data-feather="git-compare" class="me-2"></i>Text Comparison
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-12 text-center">
+                            <button type="button" class="btn btn-primary" onclick="compareTexts()">
+                                <i data-feather="eye" class="me-1"></i>Compare Texts
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="compare-text1" class="form-label">Text 1</label>
+                            <textarea class="form-control" id="compare-text1" rows="12" placeholder="Enter first text..."></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="compare-text2" class="form-label">Text 2</label>
+                            <textarea class="form-control" id="compare-text2" rows="12" placeholder="Enter second text..."></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="card bg-dark">
+                                <div class="card-body">
+                                    <h5>Comparison Results</h5>
+                                    <div id="comparison-results">
+                                        <p class="text-muted">Enter texts and click compare to see results</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 TextPro Suite. Professional text processing tools for everyone.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/textprocessor.js') }}"></script>
+    
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+    </script>
+</body>
+</html>

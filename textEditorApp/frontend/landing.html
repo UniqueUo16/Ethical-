@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextPro Suite - Professional Text Processing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+    <div class="container-fluid">
+        <!-- Header -->
+        <nav class="navbar navbar-dark">
+            <div class="container">
+                <span class="navbar-brand mb-0 h1">
+                    <i data-feather="edit-3" class="me-2"></i>
+                    TextPro Suite
+                </span>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center mb-5">
+                        <h1 class="display-4 mb-4">Professional Text Processing Tools</h1>
+                        <p class="lead mb-4">
+                            Transform your text with powerful editing, formatting, and analysis tools. 
+                            Perfect for writers, students, and businesses.
+                        </p>
+                        <a href="{{ url_for('replit_auth.login') }}" class="btn btn-primary btn-lg">
+                            <i data-feather="log-in" class="me-2"></i>
+                            Get Started
+                        </a>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card bg-secondary border-0">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i data-feather="type" class="me-2"></i>
+                                        Text Conversion
+                                    </h5>
+                                    <p class="card-text">Convert text between uppercase, lowercase, title case, and sentence case with one click.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card bg-secondary border-0">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i data-feather="bar-chart-2" class="me-2"></i>
+                                        Text Analysis
+                                    </h5>
+                                    <p class="card-text">Get detailed statistics including word count, reading time, and SEO analysis.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card bg-secondary border-0">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i data-feather="search" class="me-2"></i>
+                                        Find & Replace
+                                    </h5>
+                                    <p class="card-text">Advanced find and replace with regex support and case sensitivity options.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card bg-secondary border-0">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i data-feather="list" class="me-2"></i>
+                                        Text Formatting
+                                    </h5>
+                                    <p class="card-text">Format text as bullet points, numbered lists, and clean unwanted characters.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
