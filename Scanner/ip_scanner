@@ -1,0 +1,8 @@
+import requests
+
+url = "https://httpbin.org/ip"
+response = requests.get(url)
+print("Your public IP is:", response.json()["origin"])
+
+
+
